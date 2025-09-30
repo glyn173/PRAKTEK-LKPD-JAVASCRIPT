@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Konverter Suhu</title>
+  <style> 
+    .container{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container-teks{
+      color: rgb(13, 182, 182);
+    }
+
+  </style>
+</head>
+
+<body>
+    <div class="container">
+    <h2 class="container-teks">Konverter Suhu</h2>
+</div>
+    <!-- input angka-->
+    <label for="inputNilai">Masukkan nilai:</label>
+    <input type="number" id="inputNilai" placeholder="contoh: 100">
+
+     <!-- konversi dari -->
+    <p>Konversi dari:</p>
+    <select id="asalSuhu">
+      <option value="celsius">Celsius</option>
+      <option value="kelvin">Kelvin</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+
+     <!-- konversi ke -->
+    <p>Konversi ke:</p>
+    <select id="tujuanSuhu">
+      <option value="celsius">Celsius</option>
+      <option value="kelvin">Kelvin</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+
+      <!-- Tombol -->
+    <button id="convertButton">Mengonversi</button>
+
+      <!-- Hasil konversi -->
+    <div id="result"></div>
+  
+
+    <script>
+        document.getElementById("convertButton").addEventListener("click", function() {
+      let inputNilai = document.getElementById("inputNilai").value;
+      let asalSuhu = document.getElementById("asalSuhu").value;
+      let tujuanSuhu = document.getElementById("tujuanSuhu").value;
+
+      let value = parseFloat(inputNilai); 
+      let result;
+
+      // konversi dari Celsius
+      if (asalSuhu === "celsius") {
+        if (tujuanSuhu === "kelvin") result = value + 273.15;
+        else if (tujuanSuhu === "fahrenheit") result = (value * 9/5) + 32;
+        else result = value;
+      }
+
+      // konversi dari Kelvin
+      else if (asalSuhu === "kelvin") {
+        if (tujuanSuhu === "celsius") result = value - 273.15;
+        else if (tujuanSuhu === "fahrenheit") result = (value - 273.15) * 9/5 + 32;
+        else result = value;
+      }
+
+      // konversi dari Fahrenheit
+      else if (asalSuhu === "fahrenheit") {
+        if (tujuanSuhu === "celsius") result = (value - 32) * 5/9;
+        else if (tujuanSuhu === "kelvin") result = (value - 32) * 5/9 + 273.15;
+        else result = value;
+      }
+
+      var hasil = inputNilai + " " + asalSuhu + " = " + result.toFixed(2) + " " + tujuanSuhu;
+      document.getElementById("result").innerText = hasil;
+    });
+    </script>
+</body>
+</html>
